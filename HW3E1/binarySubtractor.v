@@ -1,9 +1,9 @@
 `timescale 1ns/1ns
 
-module binarySubstractor #(N) (
-  output [N-1:0] z,
+module binarySubtractor #(N) (
   output b,
   output v,
+  output [N-1:0] z,
   input  [N-1:0] x, y,
   input  bIn
 );
