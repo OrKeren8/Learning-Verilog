@@ -28,7 +28,7 @@ module binarySubtractor1 #(N) (
         );
 
   negate #(N) ng2(
-                .v(),
+                .V(),
                 .out(negativeBIn), 
                 .in(wireBIn)
                 );
