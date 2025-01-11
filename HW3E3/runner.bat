@@ -1,3 +1,0 @@
-E:\Programs\iverilog\bin\iverilog.exe -g2012 -o vv deps\*.v binarySubtractor1.v tb.v
-E:\Programs\iverilog\bin\vvp vv
-pause
