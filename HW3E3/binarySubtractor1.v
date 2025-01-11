@@ -10,7 +10,7 @@ module binarySubtractor1 #(N) (
 
   wire [N-1:0] negativeY, sum1, negativeBIn;
   wire [N-1:0] wireBIn = {{(N-1){1'b0}}, bIn};
-  logic cOut1, cOut2, xor1, xor2;
+  wire cOut1, cOut2, xor1, xor2;
 
   negate #(N) ng1(
                 .V(),

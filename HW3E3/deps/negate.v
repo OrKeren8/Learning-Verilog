@@ -12,6 +12,6 @@ module negate #(N) (
   binarySubtractor #(N) bs(bSub, vSub, sub, {N{1'b1}}, in, 1'b0);
   binaryAdder #(N) ba(cSum, vSum, out, sub, {{(N-1){1'b0}}, 1'b1}, 1'b0);
   
-  or4Gate o1(V, bSub, vSub, cSum, vSum);
+  or3Gate o1(V, bSub, vSub, vSum);
   
 endmodule

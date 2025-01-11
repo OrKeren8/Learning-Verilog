@@ -29,7 +29,7 @@ module comparator #(N)(
     );
 
     andGate a1(
-        .xy(gt),
+        .xy(lt),
         .x(b),
         .y(zOr)
     );
@@ -40,7 +40,7 @@ module comparator #(N)(
     );
 
     andGate a2(
-        .xy(lt),
+        .xy(gt),
         .x(zOr),
         .y(bNot)
     );
