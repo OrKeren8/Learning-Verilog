@@ -4,7 +4,7 @@ module comparatorSigned #(N)(
     output lt, eq, gt,
     input [N-1:0] x,
     input [N-1:0] y
-    );
+);
 
     wire [N-1:0] z;
     wire b, v, zOr, ZOrNot, signNotEq, xMsbNot, gtPart1;
@@ -16,22 +16,22 @@ module comparatorSigned #(N)(
 
     binarySubtractor #(N) bs1(.b(b), .v(v), .z(z), .x(x), .y(y), .bIn(1'b0));
     assign zMsb = z[N-1];
-    orMulti #(N) om1(zOr, z);
-    notGate n1(zOr, ZOrNot);
-    xorGate x1(signNotEq, xMsb, yMsb);
-    andGate a3(eq, ZOrNot, signNotEq);
+    orMulti #(N) om1(.d(zOr), .multi(z));
+    notGate n1(.x(zOr), .xn(ZOrNot));
+    xorGate x1(.xy(signNotEq), .x(xMsb), .y(yMsb));
+    andGate a3(.xy(eq), .x(ZOrNot), .y(signNotEq));
 
-    notGate n2(xMsbNot, xMsb);
-    and3Gate a1(gtPart1, signNotEq, xMsbNot, yMsb);
-    notGate n3(signEq, signNotEq);
-    xorGate x2(nss, zMsb, xMsb);
-    notGate n4(nss, ss);
-    andGate a2(gtPart2, signEq, ss);
-    orGate o1(gt, gtPart1, gtPart2);
+    notGate n2(.x(xMsb), .xn(xMsbNot));
+    and3Gate a1(.xyz(gtPart1), .x(signNotEq), .y(xMsbNot), .z(yMsb));
+    notGate n3(.x(signNotEq), .xn(signEq));
+    xorGate x2(.xy(nss), .x(zMsb), .y(xMsb));
+    notGate n4(.x(nss), .xn(ss));
+    andGate a2(.xy(gtPart2), .x(signEq), .y(ss));
+    orGate o1(.xy(gt), .x(gtPart1), .y(gtPart2));
 
-    notGate n5(yMsbNot, yMsb);
-    and3Gate a4(ltPart1, signNotEq, yMsbNot, xMsb);
-    andGate a5(ltPart2, signEq, nss);
-    orGate o2(lt, ltPart1, ltPart2);
+    notGate n5(.x(yMsb), .xn(yMsbNot));
+    and3Gate a4(.xyz(ltPart1), .x(signNotEq), .y(yMsbNot), .z(xMsb));
+    andGate a5(.xy(ltPart2), .x(signEq), .y(nss));
+    orGate o2(.xy(lt), .x(ltPart1), .y(ltPart2));
 
 endmodule

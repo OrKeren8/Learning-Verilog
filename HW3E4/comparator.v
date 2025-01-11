@@ -9,40 +9,11 @@ module comparator #(N)(
     wire [N-1:0] z;
     wire b, bNot, zOr;
 
-    binarySubtractor #(N) bs1(
-        .b(b),
-        .v(),
-        .z(z),
-        .x(x),
-        .y(y),
-        .bIn(1'b0)
-    );
-
-    orMulti #(N) om1(
-        .d(zOr),
-        .multi(z)
-    );
-
-    notGate n1(
-        .x(zOr),
-        .xn(eq)
-    );
-
-    andGate a1(
-        .xy(lt),
-        .x(b),
-        .y(zOr)
-    );
-
-    notGate n2(
-        .x(b),
-        .xn(bNot)
-    );
-
-    andGate a2(
-        .xy(gt),
-        .x(zOr),
-        .y(bNot)
-    );
+    binarySubtractor #(N) bs1(.b(b), .v(), .z(z), .x(x), .y(y), .bIn(1'b0));
+    orMulti #(N) om1(.d(zOr), .multi(z));
+    notGate n1(.x(zOr), .xn(eq));
+    andGate a1(.xy(lt), .x(b), .y(zOr));
+    notGate n2(.x(b), .xn(bNot));
+    andGate a2(.xy(gt), .x(zOr), .y(bNot));
 
 endmodule
